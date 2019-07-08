@@ -431,7 +431,8 @@ generateBuildModule testSuiteName flags pkg lbi = do
     mbLibraryName :: Library -> Name
 #if MIN_VERSION_Cabal(2,0,0)
     -- Cabal-2.0 introduced internal libraries, which are named.
-    mbLibraryName = NameLib . fmap unUnqualComponentName . libName
+    mbLibraryName LMainLibName = NameLib Nothing
+    mbLibraryName (LSubLibName n) = NameLib . Just . unUnqualComponentName $ n
 #else
     -- Before that, there was only ever at most one library per
     -- .cabal file, which has no name.
