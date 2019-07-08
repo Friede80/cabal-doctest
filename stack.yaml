@@ -1,4 +1,13 @@
-resolver: lts-6.35
+resolver: lts-13.27
+system-ghc: true
+compiler: ghc-8.9.0
+
 packages:
 - '.'
 - 'simple-example'
+
+extra-deps:
+- github: haskell/cabal
+  commit: 14a74581d020ea4719aeb6a9985b337653d48b4f
+  subdirs: 
+    - Cabal
